@@ -13,5 +13,7 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-"# PrimeiroAppFlutter </br> Neste repositorio estou publicando meu primeiro aplicativo com flutter, no qual comecei meus estudos."
+samples, guidance on mobile development, and a full API reference.</br>
+"# PrimeiroAppFlutter </br> 
+Neste repositorio estou publicando meu primeiro aplicativo com flutter, no qual comecei meus estudos." </br>
+Na Branch StatefulWidget uso o Widget do tipo Stateful onde se muda o estado 
