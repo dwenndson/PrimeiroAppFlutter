@@ -10,9 +10,38 @@ class FlutterApp extends StatelessWidget {
   }
 }
 
-class PaginaPrincipal extends StatelessWidget {
-  double numero1 = 0.0;
-  double numero2 = 0.0;
+class PaginaPrincipal extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _PaginaPrincipalState();
+  }
+}
+
+class _PaginaPrincipalState extends State<PaginaPrincipal> {
+  double _numero1 = 0.0;
+  double _numero2 = 0.0;
+  double _resultadoAdicao = 0.0;
+  double _resultadoSubtracao = 0.0;
+
+  void _setNumero1(String valor) {
+    setState(() {
+      try {
+        _numero1 = double.parse(valor);
+        _resultadoAdicao = _numero1 + _numero2;
+        _resultadoSubtracao = _numero1 - _numero2;
+      } catch (ex) {}
+    });
+  }
+
+  void _setNumero2(String valor) {
+    setState(() {
+      try {
+        _numero2 = double.parse(valor);
+        _resultadoAdicao = _numero1 + _numero2;
+        _resultadoSubtracao = _numero1 - _numero2;
+      } catch (ex) {}
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,38 +58,20 @@ class PaginaPrincipal extends StatelessWidget {
                       new InputDecoration(labelText: "Primeiro Número: "),
                   keyboardType: TextInputType.number,
                   onChanged: (valor) {
-                    try {
-                      numero1 = double.parse(valor);
-                    } catch (ex) {
-                      numero1 = 0.0;
-                    }
+                    _setNumero1(valor);
                   },
                 ),
                 new TextField(
                   decoration: new InputDecoration(labelText: "Segundo número"),
                   keyboardType: TextInputType.number,
                   onChanged: (valor) {
-                    try {
-                      numero2 = double.parse(valor);
-                    } catch (ex) {
-                      numero2 = 0.0;
-                    }
+                    _setNumero2(valor);
                   },
                 ),
-                new RaisedButton(
-                  child: new Text("CALCULAR..."),
-                  onPressed: () {
-                    double adicao = numero1 + numero2;
-                    double subtracao = numero1 - numero2;
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return new AlertDialog(
-                              title: Text("Resultados"),
-                              content: new Text(
-                                  " - Adição $adicao \n - Subtração: $subtracao"));
-                        });
-                  },
+                new Text(
+                  "- Adição: $_resultadoAdicao \n - Subtração $_resultadoSubtracao",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
                 )
               ],
             )));
